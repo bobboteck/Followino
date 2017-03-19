@@ -1,0 +1,1 @@
+Modello 3d REalizzato con sketchup 2015: versione utile a far percepire gli ingombri delle componenti.
