@@ -1,4 +1,4 @@
-update=sab 01 lug 2017 15:44:08 CEST
+update=mer 19 lug 2017 17:22:18 CEST
 version=1
 last_client=kicad
 [pcbnew]
@@ -25,16 +25,6 @@ version=1
 NetIExt=net
 [general]
 version=1
-[schematic_editor]
-version=1
-PageLayoutDescrFile=
-PlotDirectoryName=
-SubpartIdSeparator=0
-SubpartFirstId=65
-NetFmtName=
-SpiceForceRefPrefix=0
-SpiceUseNetNumbers=0
-LabSize=60
 [eeschema]
 version=1
 LibDir=
@@ -69,8 +59,16 @@ LibName27=atmel
 LibName28=contrib
 LibName29=valves
 LibName30=QRE1113
-LibName31=misc
-LibName32=arduino
-LibName33=switches
-LibName34=aruinonano
-LibName35=drv8835-carrier
+LibName31=switches
+LibName32=aruinonano
+LibName33=drv8835-carrier
+[schematic_editor]
+version=1
+PageLayoutDescrFile=
+PlotDirectoryName=
+SubpartIdSeparator=0
+SubpartFirstId=65
+NetFmtName=
+SpiceForceRefPrefix=0
+SpiceUseNetNumbers=0
+LabSize=60

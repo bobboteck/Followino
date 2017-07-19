@@ -1,0 +1,23 @@
+ERC report (dom 09 lug 2017 10:05:38 CEST, Encoding UTF8 )
+
+***** Sheet /
+ErrType(3): Pin connected to some others pins but no pin to drive it
+    @ (100,33 mm,179,07 mm): Pin 1 (Power input) of component #PWR015 is not driven (Net 2).
+ErrType(3): Pin connected to some others pins but no pin to drive it
+    @ (198,12 mm,53,34 mm): Pin 30 (Power input) of component U1 is not driven (Net 6).
+ErrType(2): Pin not connected (and no connect symbol found on this pin)
+    @ (264,16 mm,15,24 mm): Pin 1 (Passive) of component SW1 is unconnected.
+ErrType(2): Pin not connected (and no connect symbol found on this pin)
+    @ (132,08 mm,99,06 mm): Pin 2 (Passive) of component J7 is unconnected.
+ErrType(2): Pin not connected (and no connect symbol found on this pin)
+    @ (50,80 mm,73,66 mm): Pin 8 (Power input) of component U2 is unconnected.
+ErrType(2): Pin not connected (and no connect symbol found on this pin)
+    @ (182,88 mm,29,21 mm): Pin 6 (Passive) of component J5 is unconnected.
+ErrType(2): Pin not connected (and no connect symbol found on this pin)
+    @ (170,18 mm,29,21 mm): Pin 1 (Passive) of component J5 is unconnected.
+ErrType(2): Pin not connected (and no connect symbol found on this pin)
+    @ (198,12 mm,58,42 mm): Pin 28 (Input) of component U1 is unconnected.
+ErrType(2): Pin not connected (and no connect symbol found on this pin)
+    @ (162,56 mm,58,42 mm): Pin 3 (Input) of component U1 is unconnected.
+
+ ** ERC messages: 9  Errors 0  Warnings 9

@@ -1,0 +1,108 @@
+Info: Reading netlist file "/home/bobboteck/prj/linfa/lfalpha/circuito/lfalpha.net".
+
+Info: Using references to match components and footprints.
+
+Info: Checking netlist component footprint "C1:/59616688:Capacitors_SMD:CP_Elec_8x10".
+
+Info: Checking netlist component footprint "D1:/58C594C7:LEDs:LED_1206_HandSoldering".
+
+Info: Checking netlist component footprint "D2:/58C59566:LEDs:LED_1206_HandSoldering".
+
+Info: Checking netlist component footprint "J1:/58B1E3E1:Connect:AK300-2".
+
+Info: Checking netlist component footprint "J2:/58BE3739:Socket_Strips:Socket_Strip_Straight_1x03_Pitch2.54mm".
+
+Info: Checking netlist component footprint "J3:/58C1FA88:Connect:AK300-2".
+
+Info: Checking netlist component footprint "J4:/58C1F9FF:Connect:AK300-2".
+
+Info: Checking netlist component footprint "J5:/59550D92:Socket_Strips:Socket_Strip_Straight_1x06_Pitch2.54mm".
+
+Info: Checking netlist component footprint "J6:/5958479A:Socket_Strips:Socket_Strip_Straight_1x04_Pitch2.54mm".
+
+Info: Checking netlist component footprint "J7:/5960A588:Socket_Strips:Socket_Strip_Straight_1x08_Pitch2.54mm".
+
+Info: Checking netlist component footprint "J8:/5960A6B8:Socket_Strips:Socket_Strip_Straight_1x08_Pitch2.54mm".
+
+Info: Checking netlist component footprint "J9:/5960A760:Socket_Strips:Socket_Strip_Straight_1x08_Pitch2.54mm".
+
+Info: Checking netlist component footprint "R1:/58BE20A1:Resistors_SMD:R_1210_HandSoldering".
+
+Info: Checking netlist component footprint "R2:/58BE21AC:Resistors_SMD:R_1210_HandSoldering".
+
+Info: Checking netlist component footprint "R3:/58BE22CD:Resistors_SMD:R_1210_HandSoldering".
+
+Info: Checking netlist component footprint "R4:/58BE1FC3:Resistors_SMD:R_1210_HandSoldering".
+
+Info: Checking netlist component footprint "R5:/58BE2128:Resistors_SMD:R_1210_HandSoldering".
+
+Info: Checking netlist component footprint "R6:/58BE222F:Resistors_SMD:R_1210_HandSoldering".
+
+Info: Checking netlist component footprint "R7:/58BE111B:Resistors_SMD:R_1210_HandSoldering".
+
+Info: Checking netlist component footprint "R8:/58BE11E7:Resistors_SMD:R_1210_HandSoldering".
+
+Info: Checking netlist component footprint "R9:/58BE125D:Resistors_SMD:R_1210_HandSoldering".
+
+Info: Checking netlist component footprint "R10:/58BDF87E:Resistors_SMD:R_1210_HandSoldering".
+
+Info: Checking netlist component footprint "R11:/58BDF8E8:Resistors_SMD:R_1210_HandSoldering".
+
+Info: Checking netlist component footprint "R12:/58BDF955:Resistors_SMD:R_1210_HandSoldering".
+
+Info: Checking netlist component footprint "R13:/58BDE73F:Resistors_SMD:R_1210_HandSoldering".
+
+Info: Checking netlist component footprint "R14:/58BDE7AC:Resistors_SMD:R_1210_HandSoldering".
+
+Info: Checking netlist component footprint "R15:/58BDE98F:Resistors_SMD:R_1210_HandSoldering".
+
+Info: Checking netlist component footprint "R16:/58BDD9C6:Resistors_SMD:R_1210_HandSoldering".
+
+Info: Checking netlist component footprint "R17:/58BDDA95:Resistors_SMD:R_1210_HandSoldering".
+
+Info: Checking netlist component footprint "R18:/58BDDADC:Resistors_SMD:R_1210_HandSoldering".
+
+Info: Checking netlist component footprint "R19:/58B1E4AC:Resistors_SMD:R_1210_HandSoldering".
+
+Info: Checking netlist component footprint "R20:/58B1E533:Resistors_SMD:R_1210_HandSoldering".
+
+Info: Checking netlist component footprint "R21:/58C5927A:Resistors_SMD:R_1210_HandSoldering".
+
+Info: Checking netlist component footprint "R22:/58C593BA:Resistors_SMD:R_1210_HandSoldering".
+
+Info: Checking netlist component footprint "R23:/58C5B412:Resistors_SMD:R_1210_HandSoldering".
+
+Info: Checking netlist component footprint "R24:/58C5B349:Resistors_SMD:R_1210_HandSoldering".
+
+Info: Checking netlist component footprint "R25:/5957F267:Resistors_SMD:R_1210_HandSoldering".
+
+Info: Checking netlist component footprint "SW1:/596165D3:Buttons_Switches_ThroughHole:SW_E-Switch_EG1224_SPDT_Angled".
+
+Info: Checking netlist component footprint "SW2:/58C595F3:Buttons_Switches_ThroughHole:SW_Tactile_Straight_KSA0Axx1LFTR".
+
+Info: Checking netlist component footprint "SW3:/58C596D2:Buttons_Switches_ThroughHole:SW_Tactile_Straight_KSA0Axx1LFTR".
+
+Info: Checking netlist component footprint "U1:/58C86FE6:aruinonano:ARDUINO_A000005".
+
+Info: Checking netlist component footprint "U2:/5957C111:Housings_DIP:DIP-14_W7.62mm_Socket_LongPads".
+
+Info: Checking netlist component footprint "U3:/58BDD719:QRE1113:4LEADSMD".
+
+Info: Checking netlist component footprint "U4:/58BDD6AC:QRE1113:4LEADSMD".
+
+Info: Checking netlist component footprint "U5:/58BDD663:QRE1113:4LEADSMD".
+
+Changing component "U5:/58BDD663" pin "4" net name from "" to "GND".
+
+Changing component "U5:/58BDD663" pin "1" net name from "" to "Net-(R7-Pad2)".
+
+Changing component "U5:/58BDD663" pin "3" net name from "" to "Net-(R8-Pad2)".
+
+Changing component "U5:/58BDD663" pin "2" net name from "" to "GND".
+
+Info: Checking netlist component footprint "U6:/58BDD51C:QRE1113:4LEADSMD".
+
+Info: Checking netlist component footprint "U7:/58BDD92A:QRE1113:4LEADSMD".
+
+Info: Checking netlist component footprint "U8:/58BDD97C:QRE1113:4LEADSMD".
+
