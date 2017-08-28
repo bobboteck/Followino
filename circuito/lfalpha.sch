@@ -1399,7 +1399,7 @@ U 1 1 596165D3
 P 10200 700
 F 0 "SW1" H 10200 870 50  0000 C CNN
 F 1 "ON/OFF" H 10200 500 50  0000 C CNN
-F 2 "Buttons_Switches_ThroughHole:SW_E-Switch_EG1224_SPDT_Angled" H 10200 700 50  0001 C CNN
+F 2 "Socket_Strips:Socket_Strip_Straight_1x03_Pitch2.54mm" H 10200 700 50  0001 C CNN
 F 3 "" H 10200 700 50  0001 C CNN
 	1    10200 700 
 	1    0    0    -1  
