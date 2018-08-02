@@ -33,8 +33,8 @@
  *****************************************************************************/ 
 #define LED_STATUS_1  4
 #define LED_STATUS_2  9
-#define PUSH_BUTTON_START 5
-#define PUSH_BUTTON_STOP  6
+#define PUSH_BUTTON_START 3
+#define PUSH_BUTTON_STOP  2
 
 void setup()
 {
