@@ -84,18 +84,19 @@ void loop()
 
   // Send data to Arduino IDE - Serial Plotter
   Serial.print(S0);
-  Serial.println(",");
+  Serial.print(",");
   Serial.print(S1);
-  Serial.println(",");
+  Serial.print(",");
   Serial.print(S2);
-  Serial.println(",");
+  Serial.print(",");
   Serial.print(S3);
-  Serial.println(",");
+  Serial.print(",");
   Serial.print(S4);
-  Serial.println(",");
+  Serial.print(",");
   Serial.print(S5);
+  Serial.println();
 
   digitalWrite(LED_STATUS_2, LOW);
   
-  delay(500);
+  delay(1000);
 }
