@@ -3,9 +3,16 @@
  * 
  * Created 02/08/2018 - By Roberto D'Amico
  * 
- * Descrizione: ...
+ * Descrizione: Questo programma permette di effettuare un test sui 2 pulsanti 
+ * presenti sul Robot. Premendo il pulsante si START si accende il LED_STATUS_1
+ * premendo il pulsante STOP si accende il LED_STATUS_2.
+ * Quando si preme uno dei due pulsanti viene anche inviata una stringa tramite
+ * seriale che possono essere visualizzate tramite il Serial Monitor di Arduino
+ * IDE.
  * 
- * Modalità di test: ...
+ * Modalità di test: E' sufficiente collegare il Robot al PC tramite il cavo 
+ * USB usato per la programmazione di Arduino, dopo averlo programmto avviare
+ * il Serial Monitor per visualizzare i messaggi.
  * 
  * 
  * 
@@ -46,6 +53,10 @@ void setup()
   pinMode(PUSH_BUTTON_START, INPUT);
   pinMode(PUSH_BUTTON_STOP, INPUT);
 
+  // Init Serial
+  Serial.begin(9600);
+  while (!Serial);
+
   digitalWrite(LED_BUILTIN, HIGH);
 }
 
@@ -54,6 +65,7 @@ void loop()
   if(digitalRead(PUSH_BUTTON_START)==HIGH)
   {
     digitalWrite(LED_STATUS_1, HIGH);
+    Serial.println("Premuto il pulsante di Start");
   }
   else
   {
@@ -63,6 +75,7 @@ void loop()
   if(digitalRead(PUSH_BUTTON_STOP)==HIGH)
   {
     digitalWrite(LED_STATUS_2, HIGH);
+    Serial.println("Premuto il pulsante di Stop");
   }
   else
   {

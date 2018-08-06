@@ -44,7 +44,7 @@
 
 void setup() 
 {
-  // Digital output
+  // Digital OUTPUT
   pinMode(LED_BUILTIN, OUTPUT);
   pinMode(LED_STATUS_1, OUTPUT);
   pinMode(LED_STATUS_2, OUTPUT);

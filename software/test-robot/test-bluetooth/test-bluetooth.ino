@@ -1,14 +1,13 @@
 /******************************************************************************
- * Followino Test Led
+ * Followino Test Bluetooth
  * 
- * Created 01/08/2018 - By Mauro Esposito
+ * Created 06/08/2018 - By Roberto D'Amico
  * 
- * Descrizione: Questo programma permette di effettuare un test sui 2 LED di
- * stato presenti sul Robot, una volta avviato i due LED si accendo e si 
- * spengono in modo alternato ogni secondo. 
+ * Descrizione: Questo programma permette di scambiare informazioni con un 
+ * dispositivo Bluetooth a cui viene associato. ...
  * 
  * Modalità di test: E' sufficiente collegare il Robot al PC tramite il cavo 
- * USB usato per la programmazione di Arduino.
+ * USB usato per la programmazione di Arduino, ...
  * 
  * 
  * 
@@ -36,20 +35,58 @@
  *****************************************************************************/ 
 #define LED_STATUS_1  4
 #define LED_STATUS_2  9
+#define PUSH_BUTTON_START 3
+#define PUSH_BUTTON_STOP  2
 
-void setup() 
+void setup()
 {
-  // Digital OUTPUT
+  // Digital output
+  pinMode(LED_BUILTIN, OUTPUT);
   pinMode(LED_STATUS_1, OUTPUT);
   pinMode(LED_STATUS_2, OUTPUT);
+  // Digital input
+  pinMode(PUSH_BUTTON_START, INPUT);
+  pinMode(PUSH_BUTTON_STOP, INPUT);
+
+  // Init Serial
+  Serial.begin(38400);
+  while (!Serial);
+
+  digitalWrite(LED_BUILTIN, HIGH);
 }
 
-void loop() 
+void loop()
 {
-  digitalWrite(LED_STATUS_1, HIGH);   // status 1 acceso
-  digitalWrite(LED_STATUS_2, LOW);    // status 2 spento
-  delay(1000);                        // pausa di un secondo
-  digitalWrite(LED_STATUS_1, LOW);    // status 1 spento
-  digitalWrite(LED_STATUS_2, HIGH);   // status 2 acceso
-  delay(1000);                        // pausa di un secondo
+    // Legge dalla seriale il dato ricevuto
+    char btData = Serial.read();
+    // Verifica quanto ricevuto
+    switch(btData)
+    {
+        case '0':
+            digitalWrite(LED_STATUS_1, LOW);
+            break;
+        case '1':
+            digitalWrite(LED_STATUS_1, HIGH);
+            break;
+        case '2':
+            digitalWrite(LED_STATUS_2, LOW);
+            break;
+        case '3':
+            digitalWrite(LED_STATUS_2, HIGH);
+            break;
+        default:
+            digitalWrite(LED_BUILTIN, LOW);
+            delay(300);
+            digitalWrite(LED_BUILTIN, HIGH);
+    }
+
+    if(digitalRead(PUSH_BUTTON_START)==HIGH)
+    {
+        Serial.println("Premuto il pulsante di Start");
+    }
+
+    if(digitalRead(PUSH_BUTTON_STOP)==HIGH)
+    {
+        Serial.println("Premuto il pulsante di Stop");
+    }
 }
