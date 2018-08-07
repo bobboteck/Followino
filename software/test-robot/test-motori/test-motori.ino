@@ -63,7 +63,6 @@ int _delay = 2000;
 // velocita' al massimo 255:
 int _default_speed = 150; 
 
-// ------------------------------------------------------- Setup
 void setup() {
   Serial.begin(9600);
   // Setup motors
@@ -94,7 +93,6 @@ void setup() {
   digitalWrite(PIN_MOTORB_PHASE, LOW);
 }
 
-// -------------------------------------------------------- Loop
 void loop() {
   
   Serial.println("-- Muovi avanti >>>>");
@@ -125,8 +123,6 @@ void loop() {
   delay(_delay);
 }
 
-// --------------------------------------------------------------------------- Drive
-
 void motor_stop(){
   analogWrite(motor_left[1], 0);
   analogWrite(motor_right[1], 0);
@@ -136,7 +132,6 @@ void motor_stop(){
 void drive_forward(){
   digitalWrite(motor_left[0], LOW);
   analogWrite(motor_left[1], _default_speed);
-  
   digitalWrite(motor_right[0], LOW);
   analogWrite(motor_right[1], _default_speed);
 }
@@ -144,7 +139,6 @@ void drive_forward(){
 void drive_backward(){
   digitalWrite(motor_left[0], HIGH);
   analogWrite(motor_left[1], _default_speed);
-  
   digitalWrite(motor_right[0], HIGH);
   analogWrite(motor_right[1], _default_speed);
 }
@@ -152,7 +146,6 @@ void drive_backward(){
 void turn_left(){
   digitalWrite(motor_left[0], LOW);    // PH
   analogWrite(motor_left[1], _default_speed);  // EN
-  
   digitalWrite(motor_right[0], HIGH); // PH
   analogWrite(motor_right[1], 0);   // EN
 }
@@ -160,7 +153,6 @@ void turn_left(){
 void turn_right(){
   digitalWrite(motor_left[0], HIGH);  // PH
   analogWrite(motor_left[1], 0);    // EN
-  
   digitalWrite(motor_right[0], LOW);   // PH
   analogWrite(motor_right[1], _default_speed); // EN
 }
