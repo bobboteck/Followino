@@ -42,6 +42,10 @@
 #define LED_STATUS_2  9
 #define PUSH_BUTTON_START 3
 #define PUSH_BUTTON_STOP  2
+#define INTERVALLO  1000
+
+unsigned long newMillisEvent;
+int LedBuiltinStatus=HIGH;
 
 void setup()
 {
@@ -62,6 +66,7 @@ void setup()
 
 void loop()
 {
+  // Verfifica se è premuto il pulsante di Start
   if(digitalRead(PUSH_BUTTON_START)==HIGH)
   {
     digitalWrite(LED_STATUS_1, HIGH);
@@ -71,7 +76,8 @@ void loop()
   {
     digitalWrite(LED_STATUS_1, LOW);
   }
-
+  
+  // Verfifica se è premuto il pulsante di Stop
   if(digitalRead(PUSH_BUTTON_STOP)==HIGH)
   {
     digitalWrite(LED_STATUS_2, HIGH);
@@ -80,5 +86,18 @@ void loop()
   else
   {
     digitalWrite(LED_STATUS_2, LOW);
+  }
+
+  // Lampeggio del Led buitin su Arduino Nano
+  if(millis()>=newMillisEvent)
+  {
+    if(LedBuiltinStatus==HIGH)
+    {
+      digitalWrite(LED_BUILTIN, LOW);
+    }
+    else
+    {
+      digitalWrite(LED_BUILTIN, HIGH);
+    }
   }
 }
