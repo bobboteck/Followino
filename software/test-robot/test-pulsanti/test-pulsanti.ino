@@ -44,7 +44,7 @@
 #define PUSH_BUTTON_STOP  2
 #define INTERVALLO  1000
 
-unsigned long newMillisEvent;
+unsigned long newMillisEvent=0;
 int LedBuiltinStatus=HIGH;
 
 void setup()
@@ -94,10 +94,14 @@ void loop()
     if(LedBuiltinStatus==HIGH)
     {
       digitalWrite(LED_BUILTIN, LOW);
+      LedBuiltinStatus=LOW;
     }
     else
     {
       digitalWrite(LED_BUILTIN, HIGH);
+      LedBuiltinStatus=HIGH;
     }
+
+    newMillisEvent = millis()+INTERVALLO;
   }
 }
