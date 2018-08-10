@@ -1,6 +1,6 @@
 
 /******************************************************************************
- * Followino Test pulsanti
+ * Followino Test motori.
  * 
  * Created 07/08/2018 - By Mauro Esposito
  * 
