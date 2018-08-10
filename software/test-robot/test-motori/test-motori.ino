@@ -17,7 +17,7 @@
  * -- AIN2/AENBL  pin 8
  * -- BIN1/BPHASE pin 7
  * -- BIN2/BENBL  pin 5
- * -- MODE        +5V (Modalità Phase/Enable Mode)
+ * -- MODE        +5V (Modalità Phase/Enable Mode, SM (Sign-Magnitude) http://www.tmasi.com/robotica/pwmtut/pwmtut_2.htm)
  * 
  * Modalità di test: E' sufficiente collegare il Robot al PC tramite il cavo 
  * USB usato per la programmazione di Arduino, dopo averlo programmto avviare
