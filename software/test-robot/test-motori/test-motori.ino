@@ -13,8 +13,8 @@
  * MOTORA: motore a destra
  * MOTORB: motore a sinistra
  * pin:
- * -- AIN1/APHASE pin 6
- * -- AIN2/AENBL  pin 8
+ * -- AIN1/APHASE pin 8
+ * -- AIN2/AENBL  pin 6
  * -- BIN1/BPHASE pin 7
  * -- BIN2/BENBL  pin 5
  * -- MODE        +5V (Modalità Phase/Enable Mode, SM (Sign-Magnitude) http://www.tmasi.com/robotica/pwmtut/pwmtut_2.htm)
