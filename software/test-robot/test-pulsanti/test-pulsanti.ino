@@ -40,8 +40,8 @@
  *****************************************************************************/ 
 #define LED_STATUS_1  4
 #define LED_STATUS_2  9
-#define PUSH_BUTTON_START 3
-#define PUSH_BUTTON_STOP  2
+#define PUSH_BUTTON_START 2
+#define PUSH_BUTTON_STOP  3
 #define INTERVALLO  1000
 
 unsigned long newMillisEvent=0;
