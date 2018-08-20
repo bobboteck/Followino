@@ -53,15 +53,16 @@
 #define LED_STATUS_1  4
 #define LED_STATUS_2  9
 
-#define PUSH_BUTTON_START 2
-#define PUSH_BUTTON_STOP  3
+#define PUSH_BUTTON_START 2   // interrupt 0
+#define PUSH_BUTTON_STOP  3   // interrupt 1
 
 #define NUM_SENSORS             6  // number of sensors used
 #define NUM_SAMPLES_PER_SENSOR  4  // average 4 analog samples per sensor reading
 #define EMITTER_PIN             0  // emitter is controlled by digital pin 2
 
-#define Kp             0.3  // experiment to determine this, start by something small that just makes your bot follow the line at a slow speed
-#define Kd             14    // experiment to determine this, slowly increase the speeds and adjust this value. ( Note: Kp < Kd) 
+#define Kp              0.3  // experiment to determine this, start by something small that just makes your bot follow the line at a slow speed
+#define Kd              10   // experiment to determine this, slowly increase the speeds and adjust this value. ( Note: Kp < Kd) 
+int lastError = 0;           // errore ricalcolato dopo ogni loop.
 
 #define rightMaxSpeed  400  // max speed of the robot
 #define leftMaxSpeed   400  // max speed of the robot
@@ -69,15 +70,20 @@
 #define rightBaseSpeed 200  // this is the speed at which the motors should spin when the robot is perfectly on the line
 #define leftBaseSpeed  200  // this is the speed at which the motors should spin when the robot is perfectly on the line
 
+volatile int runningState = HIGH;  // ad 1 led lampeggiano in attesa dello start.
+
 QTRSensorsAnalog qtra((unsigned char[]) {0, 1, 2, 3, 4, 5}, NUM_SENSORS, NUM_SAMPLES_PER_SENSOR, EMITTER_PIN);
 unsigned int sensorValues[NUM_SENSORS];
-
 
 int motor_left[] = {PIN_MOTORB_PHASE, PIN_MOTORB_ENABLE};
 int motor_right[] = {PIN_MOTORA_PHASE, PIN_MOTORA_ENABLE};
 
 // ritardo tra un comando ed un altro inviati al driver:
 int _delay = 2000;
+
+unsigned long previousMillis = 0;
+int ledState = LOW;
+const long interval = 100;
 
 // velocita' al massimo 400:
 int _default_speed = 150; 
@@ -99,7 +105,9 @@ void setup() {
   // Setup pulsanti:
   pinMode(PUSH_BUTTON_START, INPUT);
   pinMode(PUSH_BUTTON_STOP, INPUT);
-  
+  attachInterrupt(0, manageRunningStateStart, CHANGE);
+  attachInterrupt(1, manageRunningStateStop, CHANGE);
+
   // Setup motors
   
   // Initialize the pin states used by the motor driver shield
@@ -147,12 +155,9 @@ void setup() {
   delay(2000);
 }
 
-int lastError = 0;
-int ledWaitStatus = 1; // a 1 led lampeggiano in attesa dello start.
-
 void loop() {
 
-  if(ledWaitStatus == 0) {
+  if(runningState == LOW) {
     unsigned int sensors[NUM_SENSORS];
     int position = qtra.readLine(sensors);
     int error = position - 2500;
@@ -170,49 +175,41 @@ void loop() {
   
     setSpeeds(leftMotorSpeed, rightMotorSpeed);
   }
-  
-  // Verfifica se è premuto il pulsante di Start
-  if(digitalRead(PUSH_BUTTON_START) == HIGH) {
-    ledWaitStatus = 0;
-  }
-  // Verfifica se è premuto il pulsante di Stop
-  if(digitalRead(PUSH_BUTTON_STOP) == HIGH) {
-    motor_stop();
-    ledWaitStatus = 1;
-  }
 
-  if (ledWaitStatus == 1) {
-    digitalWrite(LED_STATUS_1, HIGH);
-    digitalWrite(LED_STATUS_2, HIGH);
-    delay(500);
-    digitalWrite(LED_STATUS_1, LOW);
-    digitalWrite(LED_STATUS_2, LOW);
-    delay(500);
+  if (runningState == HIGH) {
+    blinkLeds();
   }
 }
 
-void blinkLeds(int _status) {
+void blinkLeds() {
+  unsigned long currentMillis = millis();
+  if (currentMillis - previousMillis >= interval) {
+    previousMillis = currentMillis;
+    if (ledState == LOW) {
+      ledState = HIGH;
+    } else {
+      ledState = LOW;
+    }
+    digitalWrite(LED_STATUS_1, ledState);
+    digitalWrite(LED_STATUS_2, ledState);
+  }
+}
+
+void manageRunningStateStart() {
+  ledState = LOW;
+  digitalWrite(LED_STATUS_1, ledState);
+  digitalWrite(LED_STATUS_2, ledState);
+  runningState = LOW;
+}
+
+void manageRunningStateStop() {
+  motor_stop();
+  runningState = HIGH;
 }
 
 void motor_stop(){
   setSpeeds(0, 0);
-  delay(25);
-}
-
-void drive_forward(){
-  setSpeeds(_default_speed, _default_speed);
-}
-
-void drive_backward(){
-  setSpeeds(-(_default_speed), -(_default_speed));
-}
-
-void turn_left(){
-  setSpeeds(_default_speed, -0);
-}
-
-void turn_right(){
-  setSpeeds(-0, _default_speed);
+  delay(5);
 }
 
 void setSpeeds(int leftSpeed, int rightSpeed) {
@@ -236,7 +233,6 @@ void setLeftSpeed(int speed) {
   else
     digitalWrite(motor_left[0], LOW);
 }
-
 
 void setRightSpeed(int speed) {
   boolean reverse = 0;
