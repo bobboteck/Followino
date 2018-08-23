@@ -1,4 +1,3 @@
-
 /******************************************************************************
  * Followino Test algoritmo LF.
  * 
@@ -64,11 +63,11 @@
 #define Kd              10   // experiment to determine this, slowly increase the speeds and adjust this value. ( Note: Kp < Kd) 
 int lastError = 0;           // errore ricalcolato dopo ogni loop.
 
-#define rightMaxSpeed  400  // max speed of the robot
-#define leftMaxSpeed   400  // max speed of the robot
+#define rightMaxSpeed  150  // max speed of the robot -- max 400
+#define leftMaxSpeed   150  // max speed of the robot -- max 400
 
-#define rightBaseSpeed 200  // this is the speed at which the motors should spin when the robot is perfectly on the line
-#define leftBaseSpeed  200  // this is the speed at which the motors should spin when the robot is perfectly on the line
+#define rightBaseSpeed 100  // this is the speed at which the motors should spin when the robot is perfectly on the line -- normal 200
+#define leftBaseSpeed  100  // this is the speed at which the motors should spin when the robot is perfectly on the line -- normal 200
 
 volatile int runningState = HIGH;  // ad 1 led lampeggiano in attesa dello start.
 
@@ -86,7 +85,7 @@ int ledState = LOW;
 const long interval = 100;
 
 // velocita' al massimo 400:
-int _default_speed = 150; 
+int _default_speed = 100;  // was 150
 
 void setup() {
   // Setup sensori di linea:
@@ -139,20 +138,9 @@ void setup() {
   Serial.begin(9600);
   while (!Serial);
 
-
-  digitalWrite(LED_STATUS_1, HIGH);
-  digitalWrite(LED_STATUS_2, HIGH);
+  calibrateSersors();
   
-  for (int i = 0; i < 250; i++) {  // make the calibration take about 10 seconds
-  
-    qtra.calibrate();       // reads all sensors 10 times at 2500 us per read (i.e. ~25 ms per call)
-    delay(20);
-  }
-  
-  digitalWrite(LED_STATUS_1, LOW);
-  digitalWrite(LED_STATUS_2, LOW);
-  
-  delay(2000);
+  delay(500);
 }
 
 void loop() {
@@ -179,6 +167,34 @@ void loop() {
   if (runningState == HIGH) {
     blinkLeds();
   }
+}
+
+void calibrateSersors() {
+  // durante la fase di calibrazione i led di stato saranno entrambi accesi fissi:
+  
+  digitalWrite(LED_STATUS_1, HIGH);
+  digitalWrite(LED_STATUS_2, HIGH);
+
+  boolean turnLeft = true;
+  for (int i = 0; i < 200; i++) {  // make the calibration take about 10 seconds
+    qtra.calibrate();       // reads all sensors 10 times at 2500 us per read (i.e. ~25 ms per call)
+    
+    if (i % 5 == 0) {
+      if (turnLeft) {
+        // sinistra:
+        setSpeeds(40, -40);
+      } else {
+        // destra:
+        setSpeeds(-40, 45);
+      }
+      turnLeft = !turnLeft;
+    }
+    delay(20);
+  }
+  motor_stop();
+  
+  digitalWrite(LED_STATUS_1, LOW);
+  digitalWrite(LED_STATUS_2, LOW);
 }
 
 void blinkLeds() {
