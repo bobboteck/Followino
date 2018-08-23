@@ -76,7 +76,7 @@ int motor_right[] = {PIN_MOTORA_PHASE, PIN_MOTORA_ENABLE};
 int _delay = 2000;
 
 // velocita' al massimo 400:
-int _default_speed = 150; 
+int _default_speed = 80; 
 
 void setup() {
   Serial.begin(9600);
