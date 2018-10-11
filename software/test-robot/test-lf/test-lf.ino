@@ -63,11 +63,11 @@
 #define Kd              10   // experiment to determine this, slowly increase the speeds and adjust this value. ( Note: Kp < Kd) 
 int lastError = 0;           // errore ricalcolato dopo ogni loop.
 
-#define rightMaxSpeed  150  // max speed of the robot -- max 400
-#define leftMaxSpeed   150  // max speed of the robot -- max 400
+#define rightMaxSpeed  160  // max speed of the robot -- max 400
+#define leftMaxSpeed   160  // max speed of the robot -- max 400
 
-#define rightBaseSpeed 100  // this is the speed at which the motors should spin when the robot is perfectly on the line -- normal 200
-#define leftBaseSpeed  100  // this is the speed at which the motors should spin when the robot is perfectly on the line -- normal 200
+#define rightBaseSpeed 120  // this is the speed at which the motors should spin when the robot is perfectly on the line -- normal 200
+#define leftBaseSpeed  120  // this is the speed at which the motors should spin when the robot is perfectly on the line -- normal 200
 
 volatile int runningState = HIGH;  // ad 1 led lampeggiano in attesa dello start.
 
@@ -148,6 +148,13 @@ void loop() {
   if(runningState == LOW) {
     unsigned int sensors[NUM_SENSORS];
     int position = qtra.readLine(sensors);
+    /**
+     * La lettura dell'array led viene eseguita facendo la seguente operazione:
+     *    0*value0 + 1000*value1 + 2000*value2 + 3000*value3 + 4000*value4 + 5000*value5 
+     *  ---------------------------------------------------------------------------------
+     *                value0 + value1 + value2 + value3 + value4 + value5
+     */
+    
     int error = position - 2500;
     int motorSpeed = Kp * error + Kd * (error - lastError);
     lastError = error;
@@ -179,13 +186,11 @@ void calibrateSersors() {
   for (int i = 0; i < 200; i++) {  // make the calibration take about 10 seconds
     qtra.calibrate();       // reads all sensors 10 times at 2500 us per read (i.e. ~25 ms per call)
     
-    if (i % 5 == 0) {
+    if (i % 15 == 0) {
       if (turnLeft) {
-        // sinistra:
-        setSpeeds(40, -40);
+        setSpeeds(-60, 0);
       } else {
-        // destra:
-        setSpeeds(-40, 45);
+        setSpeeds(60, 0);
       }
       turnLeft = !turnLeft;
     }
