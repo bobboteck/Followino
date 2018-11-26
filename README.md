@@ -16,4 +16,4 @@ Il repository è ancora in fase di allineamento, stiamo lavorando al:
 
 Per suggerimenti e/o segnalazioni si potete utilizzare anche le [Issues](https://github.com/bobboteck/Followino/issues) di questo repository.
 
-![Followino](https://github.com/bobboteck/Followino/blob/master/Followino.jpg)
+![Followino](https://github.com/bobboteck/Followino/blob/master/immagini/followino.jpg)
