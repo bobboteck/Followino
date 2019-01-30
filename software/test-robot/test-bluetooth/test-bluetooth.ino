@@ -33,60 +33,37 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
  * IN THE SOFTWARE.
  *****************************************************************************/ 
-#define LED_STATUS_1  4
-#define LED_STATUS_2  9
-#define PUSH_BUTTON_START 3
-#define PUSH_BUTTON_STOP  2
+int incomingData=0;
+int counter=0;
+unsigned long time, intervallo;
 
-void setup()
+void setup() 
 {
-  // Digital output
-  pinMode(LED_BUILTIN, OUTPUT);
-  pinMode(LED_STATUS_1, OUTPUT);
-  pinMode(LED_STATUS_2, OUTPUT);
-  // Digital input
-  pinMode(PUSH_BUTTON_START, INPUT);
-  pinMode(PUSH_BUTTON_STOP, INPUT);
-
-  // Init Serial
-  Serial.begin(38400);
-  while (!Serial);
-
-  digitalWrite(LED_BUILTIN, HIGH);
+  Serial.begin(9600);
+  intervallo = millis();
 }
 
 void loop()
 {
-    // Legge dalla seriale il dato ricevuto
-    char btData = Serial.read();
-    // Verifica quanto ricevuto
-    switch(btData)
+  time = millis();
+  
+  // send data only when you receive data:
+  if(Serial.available() > 0)
+  {
+    incomingData = Serial.parseInt();
+    if(incomingData > 0)
     {
-        case '0':
-            digitalWrite(LED_STATUS_1, LOW);
-            break;
-        case '1':
-            digitalWrite(LED_STATUS_1, HIGH);
-            break;
-        case '2':
-            digitalWrite(LED_STATUS_2, LOW);
-            break;
-        case '3':
-            digitalWrite(LED_STATUS_2, HIGH);
-            break;
-        default:
-            digitalWrite(LED_BUILTIN, LOW);
-            delay(300);
-            digitalWrite(LED_BUILTIN, HIGH);
+      Serial.print("Received: ");
+      Serial.println(incomingData);
+      counter = incomingData;
     }
+  }
 
-    if(digitalRead(PUSH_BUTTON_START)==HIGH)
-    {
-        Serial.println("Premuto il pulsante di Start");
-    }
-
-    if(digitalRead(PUSH_BUTTON_STOP)==HIGH)
-    {
-        Serial.println("Premuto il pulsante di Stop");
-    }
+  if(time > intervallo+1000)
+  {
+    counter++;
+    Serial.print("counter: ");
+    Serial.println(counter);
+    intervallo = millis();
+  }
 }
